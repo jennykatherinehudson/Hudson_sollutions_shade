@@ -5,7 +5,7 @@ from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 
-class SayHello(App):
+class HS_shade_2nd_window(App):
     def build(self):
         self.window = GridLayout()
         #self.window.cols = 1
@@ -54,4 +54,4 @@ class SayHello(App):
         self.greeting.text = 'Hello ' + self.user.text + '!'
 
 if __name__ == "__main__":
-    SayHello().run()
+    HS_shade_2nd_window().run()
