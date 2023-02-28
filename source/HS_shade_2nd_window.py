@@ -8,8 +8,8 @@ from kivy.uix.textinput import TextInput
 class HS_shade_2nd_window(App):
     def build(self):
         self.window = GridLayout()
-        #self.window.cols = 1
-        self.window.rows = 3
+        self.window.cols = 1
+        #self.window.rows = 3
         self.window.size_hint = (0.8, 0.8)
         self.window.pos_hint = {'center_x' : 0.5, 'center_y' : 0.5 }
         #add widgets to window
