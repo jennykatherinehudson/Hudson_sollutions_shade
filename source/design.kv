@@ -1,3 +1,18 @@
+<TextInput>
+    color: '#000000'
+    background_color: '#cac4bf'
+    halign: 'center'
+    padding_y: 35
+
+<Button>
+    color: '#000000'
+    background_color: '#E48C2B'
+    background_normal: ''
+
+<Label>
+    font_size: 20
+
+
 <MyGridLayout>
     country: country
     city: city
@@ -5,40 +20,33 @@
     BoxLayout:
         orientation: 'vertical'
         pos_hint: {'center_x' : 0.5, 'center_y' : 0.5 }
-        padding: 50
+        padding: [50,0,50,50]
         spacing: 5
         size: root.width, root.height
 
         Image: 
             source:'Hudson_sollutions_white.png'
+            allow_stretch: True
+            keep_ratio: True 
+            
 
         Label:
             text: 'Select country'
-            font_size: 18
 
         TextInput: 
             id: country
             multiline: False
-            color: '#000000'
-            background_color: '#cac4bf'
-            
-
+          
         Label:
             text: 'Select city'
-            font_size: 18
 
         TextInput: 
             id: city
             multiline: False
-            color: '#000000'
-            background_color: '#cac4bf'
             
         Button:
             text: "OK"
             pos_hint: {'center_x' : 0.5}
             size_hint: (0.2,0.4)
             bold: True
-            color: '#000000'
-            background_color: '#E48C2B'
-            background_normal: ''
             on_press: root.press()
