@@ -11,20 +11,16 @@ class City_GeoCoding:
         response = requests.get(
             api_url, headers={'X-Api-Key': '4qoS+6qOOEHn5DQjdd5+Jg==Z5LrsQM4npbJhtW6'})
         if response.status_code == requests.codes.ok:
-            with open("city_geocoding.txt", "a") as file:
-                file.write(response.text)
+            api_data = response.text.replace('[','').replace(']','').split('}')[0] + "}"
+            return eval(api_data)
         else:
             print("Error:", response.status_code, response.text)
 
 
-Krakow = City_GeoCoding('Krakow', 'PL')
-Krakow.city_geocoding()
+Krakow = City_GeoCoding('Krakow', 'PL').city_geocoding()
 
-Sydney = City_GeoCoding('Sydney', 'AU')
-Sydney.city_geocoding()
+Sydney = City_GeoCoding('Sydney', 'AU').city_geocoding()
 
-NewYork = City_GeoCoding('New York', 'USA')
-NewYork.city_geocoding()
+NewYork = City_GeoCoding('New York', 'USA').city_geocoding()
 
-Tokio = City_GeoCoding('Tokio', 'JP')
-Tokio.city_geocoding()
+Tokyo = City_GeoCoding('Tokyo', 'JP').city_geocoding()
