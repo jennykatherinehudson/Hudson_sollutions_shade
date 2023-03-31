@@ -2,11 +2,7 @@ import sqlite3
 from sqlite3 import Error
 
 def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
+    
     conn = None
     try:
         conn = sqlite3.connect(db_file)
@@ -18,11 +14,7 @@ def create_connection(db_file):
 
 
 def create_table(conn, create_table_sql):
-    """ create a table from the create_table_sql statement
-    :param conn: Connection object
-    :param create_table_sql: a CREATE TABLE statement
-    :return:
-    """
+    
     try:
         c = conn.cursor()
         c.execute(create_table_sql)
@@ -41,16 +33,22 @@ def main():
                                         state text
                                     ); """
 
-    '''sql_create_tasks_table = """CREATE TABLE IF NOT EXISTS tasks (
+    sql_create_sunrise_sunset_table = """CREATE TABLE IF NOT EXISTS sunrise_sunset (
                                     id integer PRIMARY KEY,
-                                    name text NOT NULL,
-                                    priority integer,
-                                    status_id integer NOT NULL,
-                                    project_id integer NOT NULL,
-                                    begin_date text NOT NULL,
-                                    end_date text NOT NULL,
-                                    FOREIGN KEY (project_id) REFERENCES projects (id)
-                                );"""'''
+                                    city_id integer NOT NULL,
+                                    date text NOT NULL,
+                                    sunrise text NOT NULL,
+                                    sunset text NOT NULL,
+                                    first_light text NOT NULL,
+                                    last_light text NOT NULL,
+                                    dawn text NOT NULL,
+                                    dusk text NOT NULL,
+                                    solar_noon text NOT NULL,
+                                    golden_hour text NOT NULL,
+                                    day_light text NOT NULL,
+                                    timezone text NOT NULL,                                    
+                                    FOREIGN KEY (city_id) REFERENCES city (id)
+                                );"""
 
     # create a database connection
     conn = create_connection(database)
@@ -60,8 +58,8 @@ def main():
         # create city table
         create_table(conn, sql_create_city_table)
 
-        '''# create sun table
-        create_table(conn, sql_create_tasks_table)'''
+        # create sunrise_sunset table
+        create_table(conn, sql_create_sunrise_sunset_table)
     else:
         print("Error! cannot create the database connection.")
 

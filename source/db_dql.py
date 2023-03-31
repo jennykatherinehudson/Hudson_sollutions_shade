@@ -12,7 +12,6 @@ def __create_connection(db_file):
 
     return conn
 
-
 def __select_city_lat(conn, city):
 
     cur = conn.cursor()
@@ -21,6 +20,15 @@ def __select_city_lat(conn, city):
 
     return cur.fetchall()[0][0]
 
+def city_lat(city):
+    database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
+
+    conn = __create_connection(database)
+    with conn:
+        return __select_city_lat(conn, city)
+
+
+
 def __select_city_lng(conn, city):
 
     cur = conn.cursor()
@@ -28,19 +36,29 @@ def __select_city_lng(conn, city):
         "SELECT longitude FROM city WHERE name = '{}'".format(city))
 
     return cur.fetchall()[0][0]
-
-
-def city_lat(city):
-    database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
-
-    conn = __create_connection(database)
-    with conn:
-        return __select_city_lat(conn, city)
-    
-
+  
 def city_lng(city):
     database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
 
     conn = __create_connection(database)
     with conn:
         return __select_city_lng(conn, city)
+
+
+
+
+def __select_city_id(conn, city):
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT id FROM city WHERE name = '{}'".format(city))
+
+    return cur.fetchall()[0][0]
+
+def city_id(city):
+    database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
+
+    conn = __create_connection(database)
+    with conn:
+        return __select_city_id(conn, city)
+
+

@@ -17,10 +17,18 @@ class City_GeoCoding:
             print("Error:", response.status_code, response.text)
 
 
-Krakow = City_GeoCoding('Krakow', 'PL').city_geocoding()
+Krakow_name = 'Krakow'
+Krakow_country = 'PL'
+Krakow = City_GeoCoding(Krakow_name, Krakow_country).city_geocoding()
 
-Sydney = City_GeoCoding('Sydney', 'AU').city_geocoding()
+Sydney_name = 'Sydney'
+Sydney_country = 'AU' 
+Sydney = City_GeoCoding(Sydney_name, Sydney_country).city_geocoding()
 
-NewYork = City_GeoCoding('New York', 'USA').city_geocoding()
+NewYork_name = 'New York'
+NewYork_country = 'USA'
+NewYork = City_GeoCoding(NewYork_name, NewYork_country).city_geocoding()
 
-Tokyo = City_GeoCoding('Tokyo', 'JP').city_geocoding()
+Tokyo_name = 'Tokyo'
+Tokyo_country = 'JP'
+Tokyo = City_GeoCoding(Tokyo_name, Tokyo_country).city_geocoding()

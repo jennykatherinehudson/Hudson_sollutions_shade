@@ -1,18 +1,24 @@
 import sqlite3
+import datetime
+import time
 from sqlite3 import Error
+import db_dql
 import City_Geocoding
+from Sunrise_Sunset_Time import Sunrise_Sunset_Time as Sun
 
-Krakow = tuple(City_Geocoding.Krakow.values())
+# for city table
+'''Krakow = tuple(City_Geocoding.Krakow.values())
 Sydney = tuple(City_Geocoding.Sydney.values())
 NewYork = tuple(City_Geocoding.NewYork.values())
-Tokyo = tuple(tuple(City_Geocoding.Tokyo.values()) + ('',))
+Tokyo = tuple(tuple(City_Geocoding.Tokyo.values()) + ('',))'''
+
+#for sunrise_sunset table
+Krakow_lat = db_dql.city_lat(City_Geocoding.Krakow_name)
+Krakow_lng = db_dql.city_lng(City_Geocoding.Krakow_name)
+
 
 def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
+    
     conn = None
     try:
         conn = sqlite3.connect(db_file)
@@ -32,20 +38,14 @@ def create_city(conn, project):
     return cur.lastrowid
 
 
-'''def create_task(conn, task):
-    """
-    Create a new task
-    :param conn:
-    :param task:
-    :return:
-    """
-
-    sql = ''' '''INSERT INTO tasks(name,priority,status_id,project_id,begin_date,end_date)
-              VALUES(?,?,?,?,?,?) ''''''
+def create_sunrise_sunset(conn, task):
+    
+    sql = '''INSERT INTO sunrise_sunset(city_id,date,sunrise,sunset,first_light,last_light,dawn,dusk,solar_noon,golden_hour,day_light,timezone)
+              VALUES(?,?,?,?,?,?,?,?,?,?,?,?) '''
     cur = conn.cursor()
     cur.execute(sql, task)
     conn.commit()
-    return cur.lastrowid'''
+    return cur.lastrowid
 
 
 def main():
@@ -54,26 +54,30 @@ def main():
     # create a database connection
     conn = create_connection(database)
     with conn:
-        # create a new city
-        city_Krakow = Krakow
+        # city
+        '''city_Krakow = Krakow
         city_Krakow_id = create_city(conn, city_Krakow)
 
         city_Sydney = Sydney
         city_Sydney_id = create_city(conn, city_Sydney)
 
         city_NewYork = NewYork
-        city_Krakow_id = create_city(conn, city_NewYork)
+        city_NewYork_id = create_city(conn, city_NewYork)
 
         city_Tokyo = Tokyo
-        city_Krakow_id = create_city(conn, city_Tokyo)
+        city_Tokyo_id = create_city(conn, city_Tokyo)
 
-        '''# tasks
-        task_1 = ('Analyze the requirements of the app', 1, 1, city_id, '2015-01-01', '2015-01-02')
-        task_2 = ('Confirm with user about the top requirements', 1, 1, city_id, '2015-01-03', '2015-01-05')
-
-        # create tasks
-        create_task(conn, task_1)
-        create_task(conn, task_2)'''
+        '''# sunrise_sunset
+        Krakow_id = (db_dql.city_id(City_Geocoding.Krakow_name),)
+        date_start = datetime.date(2023,7,14)
+        date_end = datetime.date(2024,1,1)
+        days = [date_start + datetime.timedelta(days=x) for x in range((date_end - date_start).days)]
+        for day in days :
+            Krakow_sunrise_sunset = tuple(Sun(Krakow_lat, Krakow_lng, day.strftime('%Y%m%d')).sunrise_sunset_time().values())
+            date = (day.strftime('%Y%m%d'),)
+            sunrise_sunset = Krakow_id + date + Krakow_sunrise_sunset
+            create_sunrise_sunset(conn, sunrise_sunset)
+            time.sleep(2)
 
 
 if __name__ == '__main__':
