@@ -1,34 +1,28 @@
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.properties import StringProperty
+from kivy.core.window import Window
 
 from kivymd.app import MDApp
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.list import IRightBodyTouch, OneLineAvatarIconListItem
+from kivymd.uix.list import OneLineIconListItem
 from kivymd.uix.menu import MDDropdownMenu
 
 import sqlite3
 
+Window.size = (360,600)
 
-class RightContentCls(IRightBodyTouch, MDBoxLayout):
+class IconListItem(OneLineIconListItem):
     icon = StringProperty()
-    text = StringProperty()
-
-
-class Item(OneLineAvatarIconListItem):
-    left_icon = StringProperty()
-    right_icon = StringProperty()
-    right_text = StringProperty()
 
 
 database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
 
 
-class MyApp(MDApp):
+class HS_shade_first(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.screen = Builder.load_file('my_app.kv')
+        self.screen = Builder.load_file('HS_shade_first.kv')
         conn = sqlite3.connect(database)
         c = conn.cursor()
         c.execute("SELECT name FROM city")
@@ -37,22 +31,26 @@ class MyApp(MDApp):
         menu_items = [
             {
                 "text": f'{city}',
-                "left_icon": "city-variant",
-                "viewclass": "Item",
+                "viewclass": "OneLineListItem",
                 "height": dp(54),
-                "on_release": lambda x=f"{city}": self.menu_callback(x),
+                "on_release": lambda x=f"{city}": self.set_item(x),
             } for city in cities
         ]
         conn.commit()
         conn.close()
         self.menu = MDDropdownMenu(
-            caller=self.screen.ids.button,
+            caller=self.screen.ids.field,
+            background_color=self.theme_cls.primary_dark,
             items=menu_items,
+            position="bottom",
             width_mult=4,
+
         )
 
-    def menu_callback(self, text_item):
-        print(text_item)
+    def set_item(self, text__item):
+        self.screen.ids.field.text = text__item
+        self.user_city = text__item
+        self.menu.dismiss()
 
     def build(self):
         self.theme_cls.theme_style = "Dark"
@@ -62,4 +60,4 @@ class MyApp(MDApp):
         return self.screen
 
 
-MyApp().run()
+HS_shade_first().run()

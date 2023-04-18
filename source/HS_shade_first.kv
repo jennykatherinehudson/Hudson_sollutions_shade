@@ -1,0 +1,36 @@
+<IconListItem>
+
+    IconLeftWidget:
+        icon: root.icon
+
+
+MDBoxLayout:
+    orientation: 'vertical'
+
+    MDScreen:
+
+        FitImage:
+            source: "image/Hudson_sollutions_white.png"
+            size_hint_y: .20
+            pos_hint: {"top": .95}
+            radius: 36, 36, 0, 0
+        
+        MDTextField:
+            id: field
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint_x: None
+            width: "200dp"
+            hint_text: "Select City"
+            on_focus: if self.focus: app.menu.open()
+
+        MDRoundFlatButton:
+            id: button
+            text: "Save"
+            text_color: "white"
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            md_bg_color: app.theme_cls.primary_dark
+            on_release: 
+				app.root.current = "second"
+				root.manager.transition.direction = "left"
+
+        

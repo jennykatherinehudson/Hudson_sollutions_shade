@@ -1,6 +1,5 @@
 import sqlite3
 import datetime
-import time
 from sqlite3 import Error
 import db_dql
 import City_Geocoding
@@ -69,7 +68,7 @@ def main():
 
         '''# sunrise_sunset
         Krakow_id = (db_dql.city_id(City_Geocoding.Krakow_name),)
-        date_start = datetime.date(2023,7,14)
+        date_start = datetime.date(2023,1,1)
         date_end = datetime.date(2024,1,1)
         days = [date_start + datetime.timedelta(days=x) for x in range((date_end - date_start).days)]
         for day in days :
@@ -77,7 +76,6 @@ def main():
             date = (day.strftime('%Y%m%d'),)
             sunrise_sunset = Krakow_id + date + Krakow_sunrise_sunset
             create_sunrise_sunset(conn, sunrise_sunset)
-            time.sleep(2)
 
 
 if __name__ == '__main__':

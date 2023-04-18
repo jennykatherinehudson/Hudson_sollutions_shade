@@ -39,14 +39,14 @@ def main():
                                     date text NOT NULL,
                                     sunrise text NOT NULL,
                                     sunset text NOT NULL,
-                                    first_light text NOT NULL,
-                                    last_light text NOT NULL,
-                                    dawn text NOT NULL,
-                                    dusk text NOT NULL,
-                                    solar_noon text NOT NULL,
-                                    golden_hour text NOT NULL,
-                                    day_light text NOT NULL,
-                                    timezone text NOT NULL,                                    
+                                    first_light text ,
+                                    last_light text ,
+                                    dawn text ,
+                                    dusk text ,
+                                    solar_noon text ,
+                                    golden_hour text ,
+                                    day_light text ,
+                                    timezone text ,                                    
                                     FOREIGN KEY (city_id) REFERENCES city (id)
                                 );"""
 
@@ -60,8 +60,10 @@ def main():
 
         # create sunrise_sunset table
         create_table(conn, sql_create_sunrise_sunset_table)
+
     else:
         print("Error! cannot create the database connection.")
+
 
 
 if __name__ == '__main__':

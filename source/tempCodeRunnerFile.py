@@ -1,1 +1,1 @@
-Hudson_sollutions_shade.db
+from kivy.core.window import Window
