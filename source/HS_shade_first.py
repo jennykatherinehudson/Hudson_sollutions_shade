@@ -8,15 +8,12 @@ from kivymd.uix.list import OneLineIconListItem
 from kivymd.uix.menu import MDDropdownMenu
 
 import sqlite3
+database = r"C:\Users\KATCZW\Desktop\MOJE\HS_shade\Hudson_sollutions_shade\Hudson_sollutions_shade.db"
 
 Window.size = (360,600)
 
 class IconListItem(OneLineIconListItem):
     icon = StringProperty()
-
-
-database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
-
 
 class HS_shade_first(MDApp):
 

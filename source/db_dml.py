@@ -4,6 +4,8 @@ from sqlite3 import Error
 import db_dql
 import City_Geocoding
 from Sunrise_Sunset_Time import Sunrise_Sunset_Time as Sun
+from HS_shade_first import database 
+
 
 # for city table
 '''Krakow = tuple(City_Geocoding.Krakow.values())
@@ -48,7 +50,6 @@ def create_sunrise_sunset(conn, task):
 
 
 def main():
-    database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
 
     # create a database connection
     conn = create_connection(database)

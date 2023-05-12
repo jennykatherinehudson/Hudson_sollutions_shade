@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+from HS_shade_first import database 
 
 def create_connection(db_file):
     
@@ -23,7 +24,6 @@ def create_table(conn, create_table_sql):
 
 
 def main():
-    database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
     sql_create_city_table = """ CREATE TABLE IF NOT EXISTS city (
                                         id integer PRIMARY KEY,
                                         name text NOT NULL,

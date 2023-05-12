@@ -1,5 +1,7 @@
 import sqlite3
 from sqlite3 import Error
+from HS_shade_first import database 
+
 
 
 def __create_connection(db_file):
@@ -21,7 +23,6 @@ def __select_city_lat(conn, city):
     return cur.fetchall()[0][0]
 
 def city_lat(city):
-    database = r"E:\Python\sqlite\db\Hudson_sollutions_shade.db"
 
     conn = __create_connection(database)
     with conn:

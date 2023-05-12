@@ -5,6 +5,7 @@ from kivy.core.window import Window
 
 from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
+from KivyCalendar import CalendarWidget
 
 #import HS_shade_first as HS
 import sqlite3
@@ -22,7 +23,6 @@ class HS_shade_second(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Orange"
-        
         #conn = sqlite3.connect(database)
         #conn.close()
         return self.screen
