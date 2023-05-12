@@ -7,20 +7,58 @@ MDFloatLayout:
         size_hint_y: .20
         pos_hint: {"top": .95}
         radius: 36, 36, 0, 0
-    
     MDCard:
-        pos_hint: {"center_x": .5, "center_y": .55 }
-        size_hint: .85, .3
+        pos_hint: {"center_x": .5, "center_y": .7 }
+        size_hint: .85, .085
         md_bg_color: "#bf9638"
+        MDIconButton:
+            icon: "sun-clock-outline"
+            pos_hint: {"top" : 1, "right" : 1}
         MDLabel:
-            text: "Hi"
+            text: "5:45:13"
             haling: "center"
-            pos_hint: {"center_y": .5}
+            pos_hint: {"top" : 1, "right" : 1}  
+
+    MDCard:
+        pos_hint: {"center_x": .5, "center_y": .6 }
+        size_hint: .85, .085
+        md_bg_color: "#bf9638"
+        MDIconButton:
+            icon: "sun-clock"
+            pos_hint: {"top" : 1, "right" : 1}
+        MDLabel:
+            text: "18:55:28"
+            haling: "center"
+            pos_hint: {"top" : 1, "right" : 1}
+
+    MDCard:
+        pos_hint: {"center_x": .5, "center_y": .5 }
+        size_hint: .85, .085
+        md_bg_color: "#bf9638"
+        MDIconButton:
+            icon: "roller-shade"
+            pos_hint: {"top" : 1, "right" : 1}
+        MDLabel:
+            text: "UP 5:15:13"
+            haling: "center"
+            pos_hint: {"top" : 1, "right" : 1}  
+
+    MDCard:
+        pos_hint: {"center_x": .5, "center_y": .4 }
+        size_hint: .85, .085
+        md_bg_color: "#bf9638"
+        MDIconButton:
+            icon: "roller-shade-closed"
+            pos_hint: {"top" : 1, "right" : 1}
+        MDLabel:
+            text: "DOWN 19:25:28"
+            haling: "center"
+            pos_hint: {"top" : 1, "right" : 1}  
 
     MDCard:
         id: Calendar
         pos_hint: {"center_x": .5, "center_y": .2 }
-        size_hint: .85, .3
+        size_hint: .85, .27
         md_bg_color: "#bf9638"
         CalendarWidget:
 
